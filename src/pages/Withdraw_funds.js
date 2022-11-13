@@ -1,71 +1,111 @@
+
+// import "../App.css";
+// import React from "react";
+// import { loadBlockchain } from "../components/BlockchainLoad";
+// import { useState, useEffect } from "react";
+// import LoadingSpinner from "../components/LoadingSpinner";
+
+// const Withdraw_funds = () => {
+//   const handlechange = (e) => {
+//     e.preventDefault();
+//     setid(e.target.value);
+//   };
+
+//   const handlesubmit = async (e) => {
+//     e.preventDefault();
+//     const { accounts, ddapp } = await loadBlockchain();
+//     await ddapp.methods.endCampaign(id).send({ from: accounts[0] });
+//     await ddapp.methods.withdrawCampaignFunds(id).send({ from: accounts[0] });
+//     alert("Widhdrawl Succefull!!!");
+//   };
+
+//   const [id, setid] = useState("");
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [balance,setbalance]=useState(0);
+
+//   return (
+//     <>
+//       {isLoading ? (
+//         <LoadingSpinner />
+//       ) : (
+//         <div  className="foot">
+//           <h1>Withdraw Money</h1>
+//           <div>
+//             <form onSubmit={handlesubmit}>
+//               <div>
+//                 <input
+//                 className="rcinp"
+//                   placeholder="Enter Campaign ID"
+//                   type="number"
+//                   value={id}
+//                   onChange={handlechange}
+//                 ></input>
+//               </div>
+//               <button className="btn">Withdraw Money</button>
+//             </form>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
+// export default Withdraw_funds;
+
 import "../App.css";
 import React from "react";
 import { loadBlockchain } from "../components/BlockchainLoad";
 import { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { useLocation } from "react-router-dom";
-
 
 const Withdraw_funds = () => {
-
-  const location = useLocation();
-
-  useEffect(() => {
-    setIsLoading(true);
-    async function fetchData() {
-      const { accounts, donation } = await loadBlockchain();
-     // implement here
-    }
-    try {
-      fetchData();
-    } catch (e) {
-      alert(" error occured", e);
-    }
-    setIsLoading(false);
-  }, []);
-
-  const handlechange=(e)=>{
+  const handlechange = (e) => {
     e.preventDefault();
-    setmoney(e.target.value);
+    setid(e.target.value);
+  };
 
- }
-  const handlesubmit=async(e)=>{
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    const { accounts, donation } = await loadBlockchain()
-   // await donation.methods.withdraweth(money*1000000000000000000,ddata.id).send({ from: accounts[0] })
-    alert("Widhdrawl Succefull!!!, Enjoy")
- }
-const[money,setmoney]=useState(0)
-const [amount,setamount]=useState('')
+    
+    const { accounts, ddapp } = await loadBlockchain();
+
+    const cmp=await ddapp.methods._campaigns(id).call();
+
+    setbalance(cmp.balance)
+    console.log(cmp.balance);
+    let x=cmp.balance;
+    alert('campaign balance is ' + x);
+    
+  
+    await ddapp.methods.withdrawCampaignFunds(id).send({ from: accounts[0] });
+    setIsLoading(false)
+    alert("Widhdrawal Successful!!!");
+    // await ddapp.methods.endCampaign(id).send({ from: accounts[0] });
+    
+  };
+
+  const [id, setid] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // const [ddata, setddata] = useState({
-  //   id: "",
-  //   name: "",
-  //   address: "",
-  //   discription: "",
-  //   walletac: "",
-  //   time: "",
-  // });
+  const [balance,setbalance]=useState(0);
+
   return (
     <>
-     {isLoading ? (
+      {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div>
-         
-          <div >
-            <p>Total Fund Raised :{amount/1000000000000000000}</p>
+        <div  className="foot">
+          <h1>Withdraw Money</h1>
+          <div>
             <form onSubmit={handlesubmit}>
               <div>
                 <input
-                
-                  placeholder="Enter Money"
+                className="rcinp"
+                  placeholder="Enter Campaign ID"
                   type="number"
-                  value={money}
+                  value={id}
                   onChange={handlechange}
                 ></input>
               </div>
-              <button>Withdraw Money</button>
+              <button className="btn">Withdraw Money</button>
             </form>
           </div>
         </div>

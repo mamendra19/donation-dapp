@@ -49,11 +49,11 @@ const Navigation = () => {
                    Create Campaign
                 </NavLink>
 
-                <NavLink to="/donate_funds" >
+                <NavLink to="/withdraw_funds" >
                     Withdraw Funds
                 </NavLink>
 
-                <NavLink to="/withdraw_funds" >
+                <NavLink to="/donate_funds" >
                     Donate Funds
                 </NavLink>
 

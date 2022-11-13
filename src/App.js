@@ -22,18 +22,20 @@ function App() {
   }, [isConnected])
 
   return (
-
-    <div className="App">
+    <BrowserRouter>
+   
 
 
       {/* {isConnected && <Navbar />} */}
       <Navbar />
-      
-
-      <Donate_funds />
-      <Withdraw_funds />
-      <Create_campaign />
-    </div>
+      <Routes>
+        <Route path="/create_campaign" element={<Create_campaign/>} />
+        <Route path="/donate_funds" element={<Donate_funds/>} />
+        <Route path="/withdraw_funds" element={<Withdraw_funds/>} />
+        </Routes>
+        </BrowserRouter>
+     
+    
   );
 }
 

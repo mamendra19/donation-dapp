@@ -9,9 +9,9 @@ export const contract=[
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "campaignId",
-				"type": "bytes32"
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -28,9 +28,9 @@ export const contract=[
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "campaignId",
-				"type": "bytes32"
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -43,13 +43,39 @@ export const contract=[
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "campaignId",
+				"type": "uint256"
+			}
+		],
+		"name": "donateToCampaign",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "campaignId",
+				"type": "uint256"
+			}
+		],
+		"name": "endCampaign",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "campaignId",
-				"type": "bytes32"
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -68,13 +94,84 @@ export const contract=[
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "initiator",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "generateCampaignId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deadline",
+				"type": "uint256"
+			}
+		],
+		"name": "startCampaign",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "campaignId",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawCampaignFunds",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "campaignId",
-				"type": "bytes32"
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -95,9 +192,9 @@ export const contract=[
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"name": "_campaigns",
@@ -105,11 +202,6 @@ export const contract=[
 			{
 				"internalType": "string",
 				"name": "title",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "imgUrl",
 				"type": "string"
 			},
 			{
@@ -152,9 +244,9 @@ export const contract=[
 		"name": "_campaignsList",
 		"outputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -163,64 +255,9 @@ export const contract=[
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "campaignId",
-				"type": "bytes32"
-			}
-		],
-		"name": "donateToCampaign",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "campaignId",
-				"type": "bytes32"
-			}
-		],
-		"name": "endCampaign",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "initiator",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "title",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			}
-		],
-		"name": "generateCampaignId",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "campaignId",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"name": "getCampaign",
@@ -230,11 +267,6 @@ export const contract=[
 					{
 						"internalType": "string",
 						"name": "title",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "imgUrl",
 						"type": "string"
 					},
 					{
@@ -276,59 +308,12 @@ export const contract=[
 		"name": "getCampaignCount",
 		"outputs": [
 			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
-				"name": "_batchNumber",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "getCampaignsInBatch",
-		"outputs": [
-			{
-				"internalType": "bytes32[]",
-				"name": "",
-				"type": "bytes32[]"
-			}
-		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "title",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "imgUrl",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "deadline",
-				"type": "uint256"
-			}
-		],
-		"name": "startCampaign",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -339,9 +324,9 @@ export const contract=[
 				"type": "address"
 			},
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"name": "userCampaignDonations",
@@ -353,19 +338,6 @@ export const contract=[
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "campaignId",
-				"type": "bytes32"
-			}
-		],
-		"name": "withdrawCampaignFunds",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
